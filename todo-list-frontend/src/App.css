@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,67 @@
   to {
     transform: rotate(360deg);
   }
+} */
+body{
+  background-color: rgb(43, 41, 41);
+  box-sizing: border-box;
+}
+.app-container{
+  padding: 30px;
+}
+.app-header__title{
+  margin-bottom: 40px;
+  font-size: 54px;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 800;
+
+}
+.app-header__title span{
+  color: #6088da;
+}
+.app-content__card--section{
+  max-width: 1024px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.todo-card__inner{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  justify-content: center;
+  border-radius: 10px;
+}
+.todo-card__content--check{
+  width: 20px;
+  height: 20px;
+}
+.todo-card__content--title{
+  font-size: 24px;
+  color: black;
+  margin: 0;
+  font-weight: 500;
+  text-align: center;
+}
+.todo-card__content--paragraph{
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+.todo-card__content--button{
+  font-size: 14px;
+  padding: 12px 30px;
+  background-color: #6088da;
+  border: none;
+  text-transform: capitalize;
+  border-radius: 5px;
+  color: white;
+  width: fit-content;
+  align-self: center;
 }
