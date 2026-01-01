@@ -1,5 +1,6 @@
 *{
   box-sizing: border-box;
+  word-break: break-word;
 }
 body{
   background-color: rgb(43, 41, 41);

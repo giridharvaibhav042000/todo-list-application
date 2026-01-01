@@ -19,6 +19,7 @@ const Home = ({ todos }: HomeProps) => {
             cardPos="horizontal"
           />
         ))}
+
       </div>
         <div className="app-content__cta">
             <Link to="/view-all" className="app-content__viewall">
