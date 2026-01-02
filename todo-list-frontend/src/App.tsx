@@ -70,8 +70,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+      <Routes key={isAuthenticated ? "auth" : "guest"}>
+        <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)}/>} />
         <Route path="/register" element={<Register />} />
 
         <Route

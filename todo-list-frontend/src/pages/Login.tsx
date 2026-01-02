@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-
-const Login = () => {
+interface LoginProps {
+  onLogin: () => void;
+}
+const Login = ({ onLogin }: LoginProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const Login = () => {
 
       // STORE token for future API calls
       localStorage.setItem("token", data.token);
+      onLogin();
       navigate("/");
 
     } catch (err) {
