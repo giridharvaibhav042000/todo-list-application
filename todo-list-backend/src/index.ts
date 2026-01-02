@@ -13,7 +13,10 @@ connectDB();
 
 // app.use(cors());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: [
+      "http://localhost:3000",
+      "https://todo-application-front.netlify.app"
+    ],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
