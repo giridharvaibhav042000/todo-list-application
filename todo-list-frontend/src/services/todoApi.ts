@@ -1,6 +1,6 @@
 import { CreateTodoPayload, Todo } from "../types/Todo";
 
-const API_URL = "http://localhost:5000/todos";
+const API_URL = "https://todo-list-application-sepia.vercel.app/todos";
 
 // Helper function to get token
 const getToken = () => localStorage.getItem("token");
@@ -21,7 +21,7 @@ export const createTodo = async (
 ): Promise<Todo> => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:5000/todos", {
+    const res = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

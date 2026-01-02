@@ -24,7 +24,7 @@ function App() {
       if (!token) return;
 
       try {
-        const res = await fetch("http://localhost:5000/todos", {
+        const res = await fetch(`https://todo-list-application-sepia.vercel.app/todos`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
