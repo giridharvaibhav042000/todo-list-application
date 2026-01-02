@@ -49,6 +49,7 @@ body{
   font-weight: 500;
   text-decoration: none;
   text-transform: capitalize;
+  border-radius: 5px;
 }
 .app-content__cta .app-content__viewall{
   text-decoration: underline;
@@ -135,6 +136,7 @@ body{
   grid-template-columns: auto 1fr;
   gap: 20px;
 }
+
 .todo-form__left label svg{
   width: 50px;
 }
@@ -146,7 +148,7 @@ body{
   appearance: none;
 }
 .todo-form__left label:has(input:checked ) svg path{
-  fill: green;
+  fill: #009c15ff;
   /* display: none; */
 }
 .todo-form__right{
@@ -192,4 +194,67 @@ body{
 }
 .todo-form__right button:last-of-type{
   background-color: rgb(246, 74, 74);
+}
+
+.app-filters{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1024px;
+  margin: auto;
+  margin-bottom:30px ;
+
+}
+.app-filter__input{
+  flex: 1;
+}
+.app-filter__select{
+  gap: 20px;
+  display: flex;
+}
+.app-filters input {
+  /* flex: 1; */
+}
+.app-filters input ,
+.app-filters select{
+  min-height: 40px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 20px;
+
+}
+
+.app-content__card--section .no_task{
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  display: grid;
+  grid-column: -1 / 1;
+}
+
+@media screen and (max-width: 400px) {
+  .todo-form__inner{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .app-filters input ,
+.app-filters select{
+    padding: 10px;
+  }
+  .app-filter__select{
+    gap: 10px;
+  }
+  .todo-card__container.horizontal .todo-card__inner{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "todo-title todo-title"
+  "todo-paragraph todo-paragraph"
+  "todo-check todo-button";
+  align-items: center;
+  max-width: 500px;
+  margin: auto;
+  row-gap: 5px;
+  border-radius: 30px;
+}
 }
