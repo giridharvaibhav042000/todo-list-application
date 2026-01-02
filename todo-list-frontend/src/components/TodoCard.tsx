@@ -26,7 +26,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ task, cardPos = 'vertical' }) => {
             <p className="todo-card__content--paragraph">
                 {task.description}
             </p>
-            <button onClick={() => navigate(`/task/${task.id}`)} className="todo-card__content--button">
+            <button onClick={() => navigate(`/task/${task._id}`)} className="todo-card__content--button">
                 view
             </button>
         </div>

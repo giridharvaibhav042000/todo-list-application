@@ -70,7 +70,7 @@ const ViewAll = ({ todos }: ViewAllProps) => {
       <div className="app-content__card--section horizontal">
         {filteredTodos.length ? (
           filteredTodos.map(todo => (
-            <TodoCard key={todo.id} task={todo} cardPos="vertical" />
+            <TodoCard key={todo._id} task={todo} cardPos="vertical" />
           ))
         ) : (
           <p className="no_task">No tasks found</p>

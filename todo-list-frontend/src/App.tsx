@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AddTask from './pages/AddTask';
-import Home from './pages/Home';
-import { Todo } from "./types/Todo";
-import ViewAll from './pages/ViewAll';
-import ViewTask from './pages/ViewTask';
-import { createTodo, deleteTodoApi, updateTodoApi } from './services/todoApi';
-import ProtectedRoute from './components/ProtectedRoute';
-import Login from './pages/Login';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddTask from "./pages/AddTask";
+import Home from "./pages/Home";
+import { CreateTodoPayload, Todo } from "./types/Todo";
+import ViewAll from "./pages/ViewAll";
+import ViewTask from "./pages/ViewTask";
+import {
+  createTodo,
+  deleteTodoApi,
+  updateTodoApi,
+} from "./services/todoApi";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+
   useEffect(() => {
     const loadTodos = async () => {
       const token = localStorage.getItem("token");
-      console.log(token);
       if (!token) return;
 
       try {
@@ -27,8 +31,7 @@ function App() {
 
         if (!res.ok) throw new Error("Unauthorized");
 
-        const data = await res.json();
-        console.log("Todos from API:", data);
+        const data: Todo[] = await res.json();
         setTodos(data);
       } catch (err) {
         console.error(err);
@@ -39,31 +42,59 @@ function App() {
     loadTodos();
   }, []);
 
-
-  const addTodo = async (todo: Todo) => {
-    await createTodo(todo);
-    setTodos(prev => [todo, ...prev]);
+  // ADD Task
+  const addTodo = async (todo: CreateTodoPayload): Promise<void> => {
+    const createdTodo = await createTodo(todo);
+    setTodos(prev => [createdTodo, ...prev]);
   };
 
+  // UPDATE task
   const updateTodo = async (todo: Todo) => {
     await updateTodoApi(todo);
+
     setTodos(prev =>
-      prev.map(t => (t.id === todo.id ? todo : t))
+      prev.map(t => (t._id === todo._id ? todo : t))
     );
   };
 
-  const deleteTodo = async (id: number) => {
-    await deleteTodoApi(id);
-    setTodos(prev => prev.filter(t => t.id !== id));
+  // DELETE task
+  const deleteTodo = async (_id: string) => {
+    await deleteTodoApi(_id);
+    setTodos(prev => prev.filter(t => t._id !== _id));
   };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<ProtectedRoute><Home todos={todos} /></ProtectedRoute>} />
-        <Route path="/add-task" element={<ProtectedRoute><AddTask addTodo={addTodo} /></ProtectedRoute>} />
-        <Route path="/view-all" element={<ProtectedRoute><ViewAll todos={todos} /></ProtectedRoute>} />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home todos={todos} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-task"
+          element={
+            <ProtectedRoute>
+              <AddTask addTodo={addTodo} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/view-all"
+          element={
+            <ProtectedRoute>
+              <ViewAll todos={todos} />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/task/:id"
           element={
@@ -74,7 +105,6 @@ function App() {
                 deleteTodo={deleteTodo}
               />
             </ProtectedRoute>
-
           }
         />
       </Routes>

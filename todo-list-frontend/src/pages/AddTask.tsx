@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Todo } from "../types/Todo";
+import { CreateTodoPayload } from "../types/Todo";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 interface AddTaskProps {
-    addTodo: (todo: Todo) => void;
+    addTodo: (todo: CreateTodoPayload) => Promise<void>;
 }
 
 const AddTask = ({ addTodo }: AddTaskProps) => {
@@ -14,23 +14,31 @@ const AddTask = ({ addTodo }: AddTaskProps) => {
     const [description, setDescription] = useState("");
     const [completed, setCompleted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const newTodo: Todo = {
-            id: Date.now(),
+        if (!title.trim()) return;
+
+        // const newTodo = {
+        //   title,
+        //   description,
+        //   completed,
+        // };
+        const newTodo: CreateTodoPayload = {
             title,
             description,
             completed,
         };
 
-        addTodo(newTodo);
+
+        await addTodo(newTodo);
         navigate("/");
     };
 
     return (
         <div className="app-container">
             <Header />
+
             <form onSubmit={handleSubmit} className="todo-form__wrapper">
                 <div className="todo-form__inner">
                     <div className="todo-form__left">
@@ -41,37 +49,38 @@ const AddTask = ({ addTodo }: AddTaskProps) => {
                                 checked={completed}
                                 onChange={e => setCompleted(e.target.checked)}
                             />
-                            
                         </label>
                     </div>
+
                     <div className="todo-form__right">
                         <label htmlFor="title-addtask">Title</label>
                         <input
-                        id="title-addtask"
+                            id="title-addtask"
                             placeholder="Title"
                             required
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                         />
+
                         <label htmlFor="description-addtask">Description</label>
                         <textarea
-                        id="description-addtask"
+                            id="description-addtask"
                             placeholder="Description"
                             rows={8}
-                            required
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
+
                         <button type="submit">Add Task</button>
                     </div>
                 </div>
             </form>
-               <div className="app-content__cta">
-            <Link to="/" className="app-content__back">
-                back
-            </Link>
 
-               </div>
+            <div className="app-content__cta">
+                <Link to="/" className="app-content__back">
+                    back
+                </Link>
+            </div>
         </div>
     );
 };

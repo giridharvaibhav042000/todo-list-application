@@ -21,7 +21,7 @@ const Home = ({ todos }: HomeProps) => {
         ))} */}
         {Array.isArray(todos) &&
             todos.slice(0, 4).map(todo => (
-            <TodoCard key={todo.id} task={todo} cardPos="horizontal" />
+            <TodoCard key={todo._id} task={todo} cardPos="horizontal" />
         ))}
 
 
