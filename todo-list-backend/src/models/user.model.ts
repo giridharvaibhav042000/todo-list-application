@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IUser extends Document {
   email: string;
   password: string;
-  role: string;
+  role: "user" | "admin";
 }
 
 const UserSchema = new Schema({
