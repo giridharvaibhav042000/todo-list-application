@@ -17,8 +17,12 @@ import Register from "./pages/Register";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
 
   useEffect(() => {
+    if (!isAuthenticated) return;
     const loadTodos = async () => {
       const token = localStorage.getItem("token");
       if (!token) return;
@@ -41,7 +45,7 @@ function App() {
     };
 
     loadTodos();
-  }, []);
+  }, [isAuthenticated]);
 
   // ADD Task
   const addTodo = async (todo: CreateTodoPayload): Promise<void> => {
