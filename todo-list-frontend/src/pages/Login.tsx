@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 const Login = () => {
@@ -41,7 +41,10 @@ const Login = () => {
                 <input placeholder="Email" onChange={e => setEmail(e.target.value)} id="login-email-address"/>
                 <label htmlFor="login-password">Password</label>
                 <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} id="login-password" />
-                <button onClick={handleLogin}>Login</button>
+                <div className="action-buttons">
+                    <button onClick={handleLogin}>Login</button>
+                    <Link to={'/register'}>Register</Link>
+                </div>
             </div>
         </div>
     </div>

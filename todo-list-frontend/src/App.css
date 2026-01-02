@@ -5,11 +5,35 @@
 body{
   background-color: rgb(43, 41, 41);
 }
+button{
+  cursor: pointer;
+}
 .app-container{
   padding: 30px;
 }
+.app-header{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.app-header h1{
+  margin-top: 0px;
+}
 .app-header a{
   text-decoration: none;
+}
+.app-header button{
+  align-self: end;
+  padding: 10px 25px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(246, 74, 74);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
 }
 .app-header__title{
   margin-bottom: 40px;
@@ -50,6 +74,11 @@ body{
   text-decoration: none;
   text-transform: capitalize;
   border-radius: 5px;
+}
+.app-content__addtodo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .app-content__cta .app-content__viewall{
   text-decoration: underline;
@@ -181,6 +210,7 @@ body{
   flex-direction: column;
   gap: 20px;
 }
+.todo-form__right a,
 .todo-form__right button{
   width: 100%;
   padding: 15px 20px;
@@ -191,7 +221,10 @@ body{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
+
 .todo-form__right button:last-of-type{
   background-color: rgb(246, 74, 74);
 }
