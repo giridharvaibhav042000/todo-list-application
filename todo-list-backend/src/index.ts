@@ -15,7 +15,8 @@ connectDB();
 app.use(cors({
   origin: [
       "http://localhost:3000",
-      "https://todo-application-front.netlify.app"
+      "https://todo-application-front.netlify.app",
+      "https://todo-list-application-7zse.vercel.app/"
     ],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
