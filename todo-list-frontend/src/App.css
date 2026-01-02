@@ -125,13 +125,14 @@ body{
 }
 
 
-
+.todo-form__wrapper{
+  max-width: 500px;
+  margin: auto;
+}
 
 .todo-form__inner{
   display: grid;
   grid-template-columns: auto 1fr;
-  max-width: 500px;
-  margin: auto;
   gap: 20px;
 }
 .todo-form__left label svg{

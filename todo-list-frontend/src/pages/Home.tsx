@@ -12,13 +12,18 @@ const Home = ({ todos }: HomeProps) => {
     <div className="app-container">
     <Header/>
       <div className="app-content__card--section">
-        {todos.slice(0, 4).map(todo => (
+        {/* {todos.slice(0, 4).map(todo => (
           <TodoCard
             key={todo.id}
             task={todo}
             cardPos="horizontal"
           />
+        ))} */}
+        {Array.isArray(todos) &&
+            todos.slice(0, 4).map(todo => (
+            <TodoCard key={todo.id} task={todo} cardPos="horizontal" />
         ))}
+
 
       </div>
         <div className="app-content__cta">
