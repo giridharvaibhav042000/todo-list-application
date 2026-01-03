@@ -28,7 +28,7 @@ const ViewTask = ({ todos, updateTodo, deleteTodo }: ViewTaskProps) => {
         }
     }, [task]);
 
-    if (!task) return <p>Task not found</p>;
+    if (!task) return <div className="app-container"><div className="app-content__card--section"><p className="no_task">Task not found</p></div></div>;
 
     const handleUpdate = async () => {
         await updateTodo({

@@ -16,6 +16,7 @@ export const fetchTodos = async (): Promise<Todo[]> => {
     return res.json();
 };
 
+// create todo
 export const createTodo = async (
     todo: CreateTodoPayload
 ): Promise<Todo> => {
@@ -37,6 +38,7 @@ export const createTodo = async (
     return res.json();
 };
 
+// update todo
 export const updateTodoApi = async (todo: any) =>
     fetch(`${API_URL}/${todo._id}`, {
         method: "PUT",
@@ -46,7 +48,7 @@ export const updateTodoApi = async (todo: any) =>
         },
         body: JSON.stringify(todo),
     });
-
+// delete todo
 export const deleteTodoApi = async (_id: string) =>
     fetch(`${API_URL}/${_id}`, {
         method: "DELETE",
